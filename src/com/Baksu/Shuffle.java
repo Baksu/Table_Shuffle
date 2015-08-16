@@ -1,23 +1,22 @@
 package com.Baksu;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Shuffle {
 
-    public int[] shuffleTab(int[] tab) {
+    public int[] shuffleTab(int[] tab){
+        if(tab.length % 2 != 0){
+            throw new IllegalArgumentException();
+        }
         final int div = tab.length/2;
         int help;
         int iterator = 1;
         int range = div-1;
 
         while(range > 0){
-            help = tab[iterator];
-            tab[iterator] = tab[iterator + range];
-            for(int j = iterator + range-1; iterator+1 <= j ; j--){
-                tab[j+1] = tab[j];
-            }
-            tab[iterator+1] = help;
+            help = tab[iterator + range];
+            System.arraycopy(tab,iterator,tab,iterator+1,range);
+            tab[iterator] = help;
             iterator += 2;
             range--;
         }
@@ -26,6 +25,9 @@ public class Shuffle {
     }
 
     public int[] shuffleTabWithHelp(int[] tab){
+        if(tab.length % 2 != 0){
+            throw new IllegalArgumentException();
+        }
         int[] tabHelp = new int[tab.length];
         int div = tab.length/2;
         int i = 0;
@@ -50,6 +52,9 @@ public class Shuffle {
     }
 
     public List shuffleArray(List array){
+        if(array.size() % 2 != 0){
+            throw new IllegalArgumentException();
+        }
         final int div = array.size()/2;
         int place = 1;
         int range = div-1;
@@ -61,7 +66,6 @@ public class Shuffle {
             place += 2;
             range--;
         }
-
         return array;
     }
 

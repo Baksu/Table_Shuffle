@@ -4,7 +4,6 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.Assert.assertArrayEquals;
@@ -12,14 +11,24 @@ import static org.junit.Assert.assertEquals;
 
 public class JUnitTests {
 
-    @Ignore
+    @Test
     public void tableShouldShuffle(){
         Shuffle shuffleTest = new Shuffle();
 
-        assertArrayEquals("size 10: ", createOutputArray(10),shuffleTest.shuffleTab(createInputArray(10)));
+        assertArrayEquals("size 0: ", createOutputArray(0), shuffleTest.shuffleTab(createInputArray(0)));
+        assertArrayEquals("size 10: ", createOutputArray(10), shuffleTest.shuffleTab(createInputArray(10)));
         assertArrayEquals("size 16: ", createOutputArray(16),shuffleTest.shuffleTab(createInputArray(16)));
         assertArrayEquals("size 1000: ", createOutputArray(1000),shuffleTest.shuffleTab(createInputArray(1000)));
         assertArrayEquals("size 1000000: ", createOutputArray(1000000),shuffleTest.shuffleTab(createInputArray(1000000)));
+    }
+
+    @Test (expected = Exception.class)
+    public void tableShuffleShouldThrowExeption(){
+        Shuffle shuffleTest = new Shuffle();
+
+        shuffleTest.shuffleTab(createInputArray(7));
+        shuffleTest.shuffleTabWithHelp(createInputArray(7));
+        shuffleTest.shuffleArray(createInputArrayList(7));
     }
 
     @Ignore
@@ -32,7 +41,7 @@ public class JUnitTests {
         assertArrayEquals("size 1000000: ", createOutputArray(1000000),shuffleTest.shuffleTabWithHelp(createInputArray(1000000)));
     }
 
-    @Test
+    @Ignore
     public void tableShouldShuffleArray(){
         Shuffle shuffleTest = new Shuffle();
 
